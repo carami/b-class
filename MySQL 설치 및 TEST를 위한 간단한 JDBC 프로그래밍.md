@@ -72,55 +72,22 @@ password varchar(10) not null);
 	   }
    }
   ```
-  - mysql-connector-java-5.1.42-bin.jar 라이브러리 추가
-
-
-
-- Junit을 이용한 Conection 테스트
-
-    JDBC Connection Test
-
-    src/test/java
-
-    에
-
-    carmi.jdbc 패키지를 생성한다. 해당 패키지에 다음과 같은 클래스를 작성한다.
-
+    - mysql-connector-java-5.1.42-bin.jar 라이브러리 추가
+  - DB입력 테스트
     ```
-    package carami.jdbc;
+    public class InsertTest {
+public static void main(String[] args) throws Exception {
+  Connection connection = null;
+  PreparedStatement ps = null;
+  connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/caramidb", "carami", "carami");
+  String sql = "insert into member values (?,?,?)";
+  ps = connection.prepareStatement(sql);
+  ps.setString(1, "testID");
+  ps.setString(2, "테스트");
+  ps.setString(3, "test");
 
-
-    import org.junit.Assert;
-    import org.junit.Test;
-
-    import java.sql.Connection;
-    import java.sql.DriverManager;
-
-    public class JdbcTest {
-
-    	@Test
-    	public void connectionTest() throws Exception{
-    		Connection connection = null;
-    		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/tododb", "carami", "carami");
-    		Assert.assertNotNull(connection);
-    	}
-    }
-
-    - DB입력 테스트
-      ```
-      public class InsertTest {
-  public static void main(String[] args) throws Exception {
-    Connection connection = null;
-    PreparedStatement ps = null;
-    connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/caramidb", "carami", "carami");
-    String sql = "insert into member values (?,?,?)";
-    ps = connection.prepareStatement(sql);
-    ps.setString(1, "testID");
-    ps.setString(2, "테스트");
-    ps.setString(3, "test");
-
-    int resultCount = ps.executeUpdate();		
-    System.out.println(resultCount);
-  }
-  }
-      ```
+  int resultCount = ps.executeUpdate();		
+  System.out.println(resultCount);
+}
+}
+    ```
