@@ -1,6 +1,7 @@
 #  Mysql 설치
 - http://dev.mysql.com/downloads/mysql/ 에서 다운로드   
 - http://withcoding.com/26 설치시 참고
+# Mysql 사용법
 - path C:\Program Files\MySQL\MySQL Server 5.7\bin 추가
   - cmd에서 실행 가능
   - mysql -u 사용자명  -p   
@@ -39,20 +40,20 @@ password varchar(10) not null);
   - 데이터삭제
     - delete from member where id = 'test';
 
-    ## mysql 에 데이터베이스와 사용자를 추가한다.
+    ## mysql 에 데이터베이스와 사용자를 추가한다. (수업중 사용^^)
 
     mysql -uroot -proot mysql
 
-    // tododb 데이터베이스 생성
+    - tododb 데이터베이스 생성
     create database tododb;
 
-    // id : carami , password : carami
+    - id : carami , password : carami
     create user 'carami'@'%' identified by 'carami';
 
-    // carami에게 tododb에 대한 모든 권한을 줌
+    - carami에게 tododb에 대한 모든 권한을 줌
     GRANT ALL on tododb.* TO carami@'%'
 
-    // 위에서 설정한 내용이 바로 적용되도록 한다.
+    - 위에서 설정한 내용이 바로 적용되도록 한다.
     FLUSH PRIVILEGES;
 
     외부에서 접근 가능하도록 방화벽에서 3306 포트를 열어놓는다.
